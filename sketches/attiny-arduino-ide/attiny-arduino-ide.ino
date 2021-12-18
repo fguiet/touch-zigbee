@@ -18,7 +18,13 @@ const byte WAKE_XBEE=5;
 const byte ADC_PIN=0; //Arduino pin 13
 const byte ENABLE_BATTERY_V_READING=4;
 
+//Hue light bulb
+//Office = 2
+const byte SENSOR_ID=2;
+
 const byte numReadings = 5;
+
+//int test;
 
 //RX=Arduino Pin 7
 //TX=Arduino Pin 6
@@ -54,17 +60,18 @@ float averageVoltage() {
   digitalWrite(ENABLE_BATTERY_V_READING, HIGH);
   
   int averageSensor = total / numReadings; 
+  //test = averageSensor;
   
-  XBee.print("analog sensor : ");
-  XBee.println(averageSensor);
+  //XBee.print("analog sensor : ");
+  //XBee.println(averageSensor);
 
   //with R1 = 10kOhm, R2 = 3.3kOhm
-  //Max voltage 4.2v of fully charged battery produces = 1.042v on A0
+  //Max voltage 4.2v of fully charged battery produces = 1.042 on A0
   //According to voltage divider formula : Vout = Vin * (R2 / (R1 + R2))
 
-  //So 4.2v is roughly represented by 890 value on A0
+  //So 4.2v is roughly represented by 992 value on A0
   
-  float voltage = (averageSensor * 4.2) / 890;
+  float voltage = (averageSensor * 4.28) / 992;
   
   return voltage;           
 }
@@ -109,8 +116,11 @@ void loop() {
 
   float battery_voltage = averageVoltage();
   //Send XBee message  
-  XBee.print("battery voltage : ");
-  XBee.println(String(battery_voltage,2));
+  //XBee.print("battery voltage : ");
+  //XBee.println(String(battery_voltage,2));
+
+  //XBee.print("{\"hue_id\":\"1\",\"battery\":\"" + String(battery_voltage,2) + "\",\"adc\":\""+String(test)+"\"}");
+  XBee.print("{\"hue_id\":"+String(SENSOR_ID)+",\"battery\":\"" + String(battery_voltage,2) + "\"}");
 
   //Wake up XBee
   digitalWrite(WAKE_XBEE,LOW);  
@@ -118,9 +128,9 @@ void loop() {
 
 void blink() {
   digitalWrite(LED, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(1000);               // wait for a second
+  delay(500);               // wait for a second
   digitalWrite(LED, LOW);    // turn the LED off by making the voltage LOW
-  delay(1000);               // wait for a second
+  delay(500);               // wait for a second
 }
 
 void sleep_function()

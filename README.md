@@ -51,3 +51,23 @@ Battery voltage can be read and send :) Nice
 A led is blinking when the capacitive sensor is touched :)
 
 ![](documentation/images/testing_communication_xctu.jpg)
+
+* Wall plug design in FreeCAD
+
+![](documentation/images/wall-plug.jpg)
+
+* 3D Printing wallplug (not the last version)
+
+![](documentation/images/3d_printing_wallplug.png)
+
+* Assembling the whole stuff (I do not have the XBee pin header at you can see, it is coming from China)
+
+![](documentation/images/pullit_in_place.png)
+
+* Everything in place (last version remove the little gaps)
+
+![](documentation/images/all_in_place.png)
+
+
+
+
