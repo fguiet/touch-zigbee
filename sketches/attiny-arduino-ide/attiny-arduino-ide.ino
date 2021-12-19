@@ -1,13 +1,29 @@
-#include <avr/sleep.h>
-
-#include <SoftwareSerial.h> //https://github.com/shimniok/ATtinySoftSerial
-
 /*
-  Blink (modified slightly for ATTiny84/44 ICs
-  Turns on an LED on for one second, then off for one second, repeatedly.
-
-  This example code is in the public domain.
+ *  Touch-Zigbee project
+ *  
+ *  Description:
+ *     
+ *     This program uses interrupt to detect when the capacitive button is touched
+ *     Then it wakes up the XBee and send a message
+ *     The message is received on another XBee plugged in a Raspberry.
+ *     A Nodered flow then toggle the Philipps Hue light bulb on and off depending on the current light bulb state.
+ *     
+ *     This is an ultra low power battery operated design. It consumes only 10uA when sleeping.
+ *     
+ *     More info here : https://github.com/fguiet/touch-zigbee
+ *     
+ *  Board used : Using board 'ATtinyX4' from platform in folder: C:\Users\fguie\AppData\Local\Arduino15\packages\attiny\hardware\avr\1.0.2   
+ *               Using Arduino As ISP to program the ATtiny84
+ *     
+ *  Date : 2021/12/19
+ *  
+ *  Version : 1.0
+ *  
  */
+
+#include <avr/sleep.h>
+#include <SoftwareSerial.h>  //Currently used : C:\Users\fguie\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.3\libraries\SoftwareSerial
+// but this one exists and seems optimized for the Attiny84 : https://github.com/shimniok/ATtinySoftSerial
 
 // ATTIny84 
 // Use Arduino Pin on the pinout 
@@ -21,6 +37,7 @@ const byte ENABLE_BATTERY_V_READING=4;
 //Hue light bulb
 //Office = 2
 const byte SENSOR_ID=2;
+const String FIRMWARE_VERSION="1.0";
 
 const byte numReadings = 5;
 
@@ -120,7 +137,7 @@ void loop() {
   //XBee.println(String(battery_voltage,2));
 
   //XBee.print("{\"hue_id\":\"1\",\"battery\":\"" + String(battery_voltage,2) + "\",\"adc\":\""+String(test)+"\"}");
-  XBee.print("{\"hue_id\":"+String(SENSOR_ID)+",\"battery\":\"" + String(battery_voltage,2) + "\"}");
+  XBee.print("{\"hue_id\":"+String(SENSOR_ID)+",\"battery\":\"" + String(battery_voltage,2) + "\",\"fw\":\""+FIRMWARE_VERSION+"\"}");
 
   //Wake up XBee
   digitalWrite(WAKE_XBEE,LOW);  
