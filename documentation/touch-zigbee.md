@@ -6,34 +6,37 @@
 
 With tiny led that indicates power on is on
 
-Consumption : 1.2 mA (no touch)
-Consumption : 2.3 mA (touch + touch led indicator is on)
+        Consumption : 1.2 mA (no touch)
+
+        Consumption : 2.3 mA (touch + touch led indicator is on)
 
 When tiny led with tiny led that indicates power on is removed
 
-Consumption : < 10uA (no touch)
-Consumption : around 1.2 mA (touch + touch led indicator is on)
+        Consumption : < 10uA (no touch)
+
+        Consumption : around 1.2 mA (touch + touch led indicator is on)
 
 * ATtiny 84 + green led and 150ohm reistor
 
-Consumption : 1.2 mA (green led off)
-Consumption : 8.5 mA (green led on)
+        Consumption : 1.2 mA (green led off)
+
+        Consumption : 8.5 mA (green led on)
 
 * ATtiny 84 alone (sleep mode, no ADC)
 
-Consumption : 1.6uA
+        Consumption : 1.6uA
 
 * ATtiny 84 + XBee (no sleep)
 
-Consumption : 52 mA
+        Consumption : 52 mA
 
 * ATtiny 84 + XBee (sleep)
 
-Consumption : around 4uA
+        Consumption : around 4uA
 
 * ATiny 84 (sleep mode) + XBee (sleepmode) + CMJMCU-1010
 
-Consumption : Peak at 20 uA when touching then less than 10 uA :)
+        Consumption : Peak at 20 uA when touching then less than 10 uA :)
 
 ## Configuring XBee S1 with XCTU v6.5.6
 
@@ -183,3 +186,4 @@ Ne pas relier les GND, ca sera automatique avec le plan de masse
 * [Communication XBee](https://www.redohm.fr/2015/03/communication-xbee/)
 * [Configuration XBee](https://www.electro-info.ovh/configuration-d-un-module-XBEE-avec-XCTU)
 * [Un programme qui ressemble a ce que je fais](https://github.com/cano64/ATTiny85-ATTiny84-BMP085-Arduino-Library-FastAltitude/issues/1)
+* [How works a switch without neutral](https://www.youtube.com/watch?v=VNYcD7MEp4A)
