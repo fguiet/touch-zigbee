@@ -46,6 +46,8 @@ Diameter : only 5 cm (can be insert in a standard French mecanical on/off switch
 
 * Testing XBee communication with XCTU
 
+NB : Version 2.0.0 of this project use XBee API Mode 2 (as you can see of the picture below I was using transparent mode before (AT))
+
 Battery voltage can be read and send :) Nice
 
 A led is blinking when the capacitive sensor is touched :)

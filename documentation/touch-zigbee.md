@@ -71,6 +71,12 @@ Sleep mode will be control by pin 9, see <https://www.digi.com/resources/documen
 PIN 9 HIGH : Xbee sleeps
 PIN 9 DOWN : Xbee awake
 
+### API Mode 
+
+2024/01/21 - Quite a big change. I am using Xbee API with escaped mode instead of transparent mode (AT). So know I can have more information (like RSSI) and be compatible with my other projects.
+
+![](images/api_enable_xbee.png)
+
 ## Read battery voltage
 
 https://gist.github.com/dwhacks/7208805
@@ -94,7 +100,39 @@ Extract from ATtiny datasheet p49.
 
 ## Add SoftSerial to the Arduino IDE
 
-I am using the SoftSerial that comes with the Arduino IDE : See <C:\Users\fguie\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.3\libraries\SoftwareSerial>
+From 2024/01/21, I moved to XBee API Mode. 
+Firmware is now 2.0.0.
+I had a hard time making XBee API Mode to work.
+
+The libray I used up to know : SoftwareSerial was not capable of working at more than 9600 bauds...it took quite a long time to understand this problem.
+
+So I tried to use the following library [ATtinySerialOut](https://github.com/ArminJo/ATtinySerialOut). 
+
+But I soon realiazed that this library was not working with the PIN 7 (PA6).
+
+![](images/attiny84_pinout.png)
+
+The only working pin was PB1 (PIN 3) or PB2 (PIN 5) at 38400 bauds.
+
+This made me change the PCD Datasheet...I soldered a piece of wire to make it work for now...
+
+To debug the serial port I used a serial to USB port adapter
+
+![](images/debug_serial.png)
+
+GND to GND
+PIN RX (serial adapter) to PA1 of ATtiny
+
+Then I used `screen`
+
+```bash
+# Quit CTRL-A then :quit
+screen /dev/ttyUSB0 38400
+```
+
+__Note below are deprecated from 2024/01/21 :__
+
+I am using the SoftwareSerial that comes with the Arduino IDE : See <C:\Users\fguie\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.3\libraries\SoftwareSerial>
 
 It may be possible to use another one:
 
@@ -136,7 +174,9 @@ Arduino Pin 13 <=> pin9 (arduino pin 4)
 
 ## Kicad
 
-Ref:
+__Schematic__
+
+![](images/kicad_schematic.png)
 
 Ce tuto : <https://www.youtube.com/watch?v=RpVIrzEUsIM&t=1837s>
 
