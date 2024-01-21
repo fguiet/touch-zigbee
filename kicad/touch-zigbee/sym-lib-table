@@ -1,3 +1,4 @@
 (sym_lib_table
-  (lib (name touch-zigbee-rescue)(type Legacy)(uri ${KIPRJMOD}/touch-zigbee-rescue.lib)(options "")(descr ""))
+  (version 7)
+  (lib (name "touch-zigbee-rescue")(type "KiCad")(uri "${KIPRJMOD}/touch-zigbee-rescue.kicad_sym")(options "")(descr ""))
 )
